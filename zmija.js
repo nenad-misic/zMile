@@ -1,6 +1,6 @@
-document.getElementById('tabla').innerHTML = [...Array(30)].map((e,i) => `<tr>${[...Array(30)].map((x,j) => `<td id="td_${i}_${j}" class="field"></td>`).join('\n')}</tr>`).join('\n');
+document.getElementById('tabla').innerHTML = [...Array(20)].map((e,i) => `<tr>${[...Array(20)].map((x,j) => `<td id="td_${i}_${j}" class="field"></td>`).join('\n')}</tr>`).join('\n');
 var check_end = () => {
-    if (((new Set(pozisns.map(e => `${e.i} ${e.j}`))).size != pozisns.length) || (pozisns.filter(e => e.i < 0 || e.i > 29 || e.j < 0 || e.j > 29).length > 0)) {
+    if (((new Set(pozisns.map(e => `${e.i} ${e.j}`))).size != pozisns.length) || (pozisns.filter(e => e.i < 0 || e.i > 19 || e.j < 0 || e.j > 19).length > 0)) {
 	location.reload();
         alert(`The end! Score: ${(leng-4)/2}`);
     }
@@ -9,22 +9,29 @@ var render = () => {
     check_end();
     for (let x of document.querySelectorAll('.field')) {
          x.style.background = "#efefef";
+         x.style.borderRadius = 0
     }
     for (let pozisn of pozisns) {
-	document.getElementById(`td_${pozisn.i}_${pozisn.j}`).style.background = '#666';
+	document.getElementById(`td_${pozisn.i}_${pozisn.j}`).style.background = '#999';
+	document.getElementById(`td_${pozisn.i}_${pozisn.j}`).style.borderRadius = '50%'
     }
 
+    let glava = pozisns[pozisns.length - 1]
+	document.getElementById(`td_${glava.i}_${glava.j}`).style.background = `url("pele.jpg")`;
+    document.getElementById(`td_${glava.i}_${glava.j}`).style.backgroundRepeat = 'round';
+
    
-    document.getElementById(`td_${food.i}_${food.j}`).style.background = '#0F0';
+    document.getElementById(`td_${food.i}_${food.j}`).style.background = 'url("cevap.jpg")';
+    document.getElementById(`td_${food.i}_${food.j}`).style.backgroundRepeat = 'round';
     document.getElementById('score').innerHTML = `Score: ${(leng-4)/2}`;
    
 }
 
 var getRandom = () => {
-    let i = parseInt(Math.random() * 29);
-    while (pozisns.filter( e => e.i == i).length > 0) i = parseInt(Math.random() * 29);
-    let j = parseInt(Math.random() * 29);
-    while (pozisns.filter( e => e.j == j).length > 0) j = parseInt(Math.random() * 29);
+    let i = parseInt(Math.random() * 19);
+    while (pozisns.filter( e => e.i == i).length > 0) i = parseInt(Math.random() * 19);
+    let j = parseInt(Math.random() * 19);
+    while (pozisns.filter( e => e.j == j).length > 0) j = parseInt(Math.random() * 19);
     return {i,j}
 }
 
