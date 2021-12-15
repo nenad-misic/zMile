@@ -1,5 +1,35 @@
 .field {
-    width: 35px;
-    height: 35px;
     background-color: #efefef;   
+}
+
+#tabla {
+    width: 90vh;
+    height: 90vh;
+}
+
+#score {
+    position: absolute;
+    top: 0;
+    left: 20;
+}
+
+#overlay {
+    position: absolute;
+    transition: all 0.5s;
+    background-color: #cecece;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    text-align: center;
+    line-height: 75vh;
+}
+
+h1 {
+    font-size: 4vh;
+}
+
+#msg {
+    font-size: 10vh;
 }
